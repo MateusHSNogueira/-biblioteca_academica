@@ -1,0 +1,73 @@
+// pacote model
+
+package model;
+
+// Classe base: ItemBiblioteca
+public class ItemBiblioteca {
+    protected String titulo;
+    protected String codigo;
+
+    public ItemBiblioteca(String titulo, String codigo) {
+        this.titulo = titulo;
+        this.codigo = codigo;
+    }
+
+    public void avaliar() {
+        System.out.println("Item avaliado.");
+    }
+}
+
+// Subclasse: Livro
+class Livro extends ItemBiblioteca {
+    public Livro(String titulo, String codigo) {
+        super(titulo, codigo);
+    }
+
+    @Override
+    public void avaliar() {
+        System.out.println("Livro " + titulo + " avaliado com sucesso. Obrigado pela contribuição!");
+    }
+}
+
+// Subclasse: Revista
+class Revista extends ItemBiblioteca {
+    public Revista(String titulo, String codigo) {
+        super(titulo, codigo);
+    }
+
+    @Override
+    public void avaliar() {
+        System.out.println("Revista " + titulo + " recebeu sua avaliação. Obrigado!");
+    }
+}
+
+// Classe Aluno (com método avaliarItem)
+class Aluno {
+    protected String nome;
+    protected String matricula;
+
+    public Aluno(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
+    public void solicitarLivro(String titulo) {
+        System.out.println("Aluno solicitou o livro: " + titulo);
+    }
+
+    public void avaliarItem(ItemBiblioteca item) {
+        item.avaliar();
+    }
+}
+
+// Classe principal para teste
+public class Main {
+    public static void main(String[] args) {
+        Aluno aluno1 = new Aluno("João", "123");
+        ItemBiblioteca livro = new Livro("POO em Java", "L01");
+        ItemBiblioteca revista = new Revista("Ciência Hoje", "R01");
+
+        aluno1.avaliarItem(livro);   // Polimorfismo
+        aluno1.avaliarItem(revista); // Polimorfismo
+    }
+}
